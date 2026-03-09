@@ -3,15 +3,15 @@
 ## Collecting the colors
 
 During the `generate` job of [The Worker](/worker), all potential colorschemes
-are downloaded on the server.
+are downloaded to the server.
 
-Using those files, a real neovim instance is launched and all colorscheme
+Using those files, a real Neovim instance is launched and all colorscheme
 variants are tried (colorscheme names found, as well as `light` and `dark`
 backgrounds) on a very specific code snippet.
 
 Using [extractor.nvim](https://github.com/vimcolorschemes/extractor.nvim), the
-cursor runs through all the words of the assigned code snippet, and the color
-as well as the group name under the cursor are stored. The data is stored into
+cursor moves through every token in the code snippet, and both the color and
+the highlight group name under the cursor are stored. The data is stored in
 the database entry for each colorscheme.
 
 Here is an example of what the data looks like for a colorscheme after a
@@ -64,7 +64,7 @@ Here is an example of what the data looks like for a colorscheme after a
 ## HTML code sample
 
 A code sample is used to generate color data from a vim color scheme. That same
-code sample is then turned into a HTML template by using
+code sample is then turned into an HTML template by using
 [cocopon/snapbuffer.vim](https://github.com/cocopon/snapbuffer.vim), a vim
 plugin that turns a vim buffer view into HTML.
 
@@ -81,13 +81,13 @@ Here's a sample of a generated code sample:
 
 ## Applying the colors
 
-You might have noticed the classes generated in the HTML template match the
-exact name of the color groups that we stored in our database.
+You might have noticed that the classes generated in the HTML template match the
+exact names of the color groups stored in the database.
 
-Each class is added to a stylesheet, and to each one of them we add a [CSS
-custom property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) that will
-then be overwritten for each the vim color scheme previews, applying their
-custom syntax colors to the code sample template:
+Each class is added to a stylesheet, and each one gets a [CSS custom
+property](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) that is
+overwritten for each vim colorscheme preview, applying its syntax colors to the
+shared code sample template:
 
 ```css
 .vimParenSep {
