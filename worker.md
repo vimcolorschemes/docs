@@ -58,7 +58,7 @@ used by the website.
 
 - the stargazers count history
 - the stargazers count for the last week
-- the last update date
+- the last push date
 
 Here's a sample of a valid vim color scheme after this stage:
 
@@ -73,7 +73,7 @@ Here's a sample of a valid vim color scheme after this stage:
   "description": "🍨 Soothing pastel theme for (Neo)vim",
   "githubCreatedAt": "2021-08-18T01:14:49.000Z",
   "githubURL": "https://github.com/catppuccin/nvim",
-  "githubUpdatedAt": "2025-02-22T19:13:26.000Z",
+  "pushedAt": "2025-02-22T19:13:26.000Z",
   "stargazersCount": 6021,
   "stargazersCountHistory": [
     {
