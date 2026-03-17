@@ -2,10 +2,11 @@
 
 ## Projects
 
-Two projects work together to make `vimcolorschemes` possible:
+Three projects work together to make `vimcolorschemes` possible:
 
 - [The Worker](#the-worker)
 - [The App](#the-app)
+- [extractor.nvim](#extractornvim)
 
 ## The Worker
 
@@ -46,3 +47,20 @@ The App is the website that displays all colorschemes found by the Worker.
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [MongoDB](https://www.mongodb.com/)
+
+## extractor.nvim
+
+`extractor.nvim` is a small Neovim plugin used by the Worker during `generate`
+jobs.
+
+It tries each colorscheme/background combination, reads highlight groups from a
+real Neovim instance, and outputs structured color data consumed by the app.
+
+### Links
+
+- [See the repository](https://github.com/vimcolorschemes/extractor.nvim)
+
+### Stack
+
+- [Lua](https://www.lua.org/)
+- [Neovim API](https://neovim.io/doc/user/api.html)
