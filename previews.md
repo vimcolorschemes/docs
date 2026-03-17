@@ -61,22 +61,24 @@ Here is an example of what the data looks like for a colorscheme after a
 }
 ```
 
-## HTML code sample
+## Code sample template
 
-A code sample is used to generate color data from a vim color scheme. That same
-code sample is then turned into an HTML template by using
-[cocopon/snapbuffer.vim](https://github.com/cocopon/snapbuffer.vim), a vim
-plugin that turns a vim buffer view into HTML.
+A fixed code sample is used to generate color data from a vim color scheme.
+The same sample is also rendered in the app as a shared preview template (via
+React), and only the CSS custom properties are changed for each colorscheme.
 
-Here's a sample of a generated code sample:
+The sample content is stored in the Worker at `vim/code_sample.vim`, and the app
+renders matching classes in its preview component.
+
+Here's a simplified sample of the rendered template:
 
 ```html
-<span class="vimLet">let</span><span class="vimFuncBody"> </span
-><span class="vimVar">l:raw_color</span><span class="vimFuncBody"> </span
-><span class="vimOper">=</span><span class="vimFuncBody"> </span
-><span class="vimFuncName">trim</span><span class="vimParenSep">(</span
-><span class="vimFuncVar">a:color</span><span class="vimOperParen">, </span
-><span class="vimString">\'#\'</span><span class="vimParenSep">)</span>
+<span class="vimLet">let</span><span class="vimFuncBody"> </span>
+<span class="vimVar">l:raw_color</span><span class="vimFuncBody"> </span>
+<span class="vimOper">=</span><span class="vimFuncBody"> </span>
+<span class="vimFuncName">trim</span><span class="vimParenSep">(</span>
+<span class="vimFuncVar">a:color</span><span class="vimOperParen">, </span>
+<span class="vimString">'#'</span><span class="vimParenSep">)</span>
 ```
 
 ## Applying the colors
@@ -91,6 +93,6 @@ shared code sample template:
 
 ```css
 .vimParenSep {
-  color: var(--vim-vimParenSep);
+  color: var(--colorscheme-vimParenSepFg);
 }
 ```
