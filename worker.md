@@ -104,43 +104,10 @@ Here is a sample of a valid vim color scheme after this stage:
 ```json
 {
   ...
-  "vimColorSchemes": [
-    {
-      "name": "catppuccin-macchiato",
-      "data": {
-        "dark": [
-          { "name": "vimLineCommentFg", "hexCode": "#939AB7" },
-          { "name": "vimFuncKeyFg", "hexCode": "#C6A0F6" },
-          { "name": "vimFuncBangFg", "hexCode": "#91D7E3" },
-          { "name": "DelimiterFg", "hexCode": "#939AB7" },
-          { "name": "vimFuncParamFg", "hexCode": "#F0C6C6" },
-          { "name": "vimFuncModFg", "hexCode": "#F5BDE6" },
-          { "name": "vimLetFg", "hexCode": "#C6A0F6" },
-          { "name": "vimVarFg", "hexCode": "#F0C6C6" },
-          { "name": "vimOperFg", "hexCode": "#91D7E3" },
-          { "name": "vimFuncNameFg", "hexCode": "#8AADF4" },
-          { "name": "vimParenSepFg", "hexCode": "#939AB7" },
-          { "name": "vimFuncVarFg", "hexCode": "#F0C6C6" },
-          { "name": "vimStringFg", "hexCode": "#A6DA95" },
-          { "name": "vimNumberFg", "hexCode": "#F5A97F" },
-          { "name": "vimNotFuncFg", "hexCode": "#C6A0F6" },
-          { "name": "vimCommandFg", "hexCode": "#C6A0F6" },
-          { "name": "NormalFg", "hexCode": "#CAD3F5" },
-          { "name": "NormalBg", "hexCode": "#24273A" },
-          { "name": "StatusLineFg", "hexCode": "#CAD3F5" },
-          { "name": "StatusLineBg", "hexCode": "#1E2030" },
-          { "name": "CursorFg", "hexCode": "#24273A" },
-          { "name": "CursorBg", "hexCode": "#CAD3F5" },
-          { "name": "LineNrFg", "hexCode": "#494D64" },
-          { "name": "CursorLineBg", "hexCode": "#303347" },
-          { "name": "CursorLineNrFg", "hexCode": "#B7BDF8" }
-        ]
-      },
-      "backgrounds": ["dark"]
-    },
-  ],
-  ...
+  "vimColorSchemes": [ ... ],
   "generateValid": true,
   "generatedAt": "2021-10-13T21:12:19.281Z"
 }
 ```
+
+See [Colorscheme code previews](/previews) for the full structure of `vimColorSchemes`.
