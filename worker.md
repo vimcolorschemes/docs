@@ -7,6 +7,8 @@
 The Worker is an essential part of `vimcolorschemes`. It manages and updates
 the repository data used by the app.
 
+As of `v3.0.0`, the Worker uses libSQL/SQLite (local or Turso) for storage.
+
 ## 3 jobs
 
 The Worker runs 3 jobs:
@@ -26,14 +28,13 @@ After those jobs finish, the app fetches the latest data and builds
 The `import` job is simple. It fetches a list of repositories and saves only
 the most basic information at this stage. The queries used to fetch
 repositories only match repositories that could potentially be a vim color
-scheme. Still, since
-the queries are flexible and little to no validation is done at this point, many
-repositories are not vim color schemes at all, but dotfiles, vim
-plugins, etc.
+scheme. Still, since the queries are flexible and little to no validation is
+done at this point, many repositories are not vim color schemes at all, but
+dotfiles, vim plugins, etc.
 
-Each repository is stored in the database.
+Each repository is inserted in the database.
 
-Here's an example of a repository at this stage:
+Here is an example repository shape at this stage:
 
 ```json
 {
@@ -60,7 +61,7 @@ used by the website.
 - the stargazers count for the last week
 - the last push date
 
-Here's a sample of a valid vim color scheme after this stage:
+Here is a sample of a valid vim color scheme after this stage:
 
 ```json
 {
@@ -98,7 +99,7 @@ The `generate` job installs the
 plugin, then installs each repository as a Neovim plugin, lists the possible
 colorschemes it contains, and generates the color data for each one.
 
-Here's a sample of a valid vim color scheme after this stage:
+Here is a sample of a valid vim color scheme after this stage:
 
 ```json
 {

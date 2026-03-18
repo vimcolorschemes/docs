@@ -12,7 +12,7 @@ Three projects work together to make `vimcolorschemes` possible:
 
 The Worker is a series of scripts that run daily. Their main goal is to fetch
 repositories that could resemble a vim/neovim colorscheme from GitHub and store
-them in a database.
+them in the project database.
 
 For every repository it finds, it installs the repository as a Neovim plugin and
 uses the
@@ -28,7 +28,7 @@ the database.
 ### Tech stack
 
 - [Golang](https://golang.org/)
-- [MongoDB](https://www.mongodb.com/)
+- [SQLite/libSQL](https://docs.turso.tech/libsql)
 - [GitHub API](https://docs.github.com/en/rest)
 - [extractor.nvim](https://github.com/vimcolorschemes/extractor.nvim)
 
@@ -46,7 +46,7 @@ The App is the website that displays all colorschemes found by the Worker.
 
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
-- [MongoDB](https://www.mongodb.com/)
+- [SQLite/libSQL](https://docs.turso.tech/libsql)
 
 ## extractor.nvim
 
