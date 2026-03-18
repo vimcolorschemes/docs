@@ -10,13 +10,17 @@
 
 The app now uses libSQL/SQLite.
 
-1. Configure your database URL.
-   - Local SQLite file (default):
-     - `DATABASE_URL=file:./database/vimcolorschemes.db`
-   - Remote Turso database:
-     - `DATABASE_URL=libsql://your-database.turso.io`
-     - `DATABASE_AUTH_TOKEN=your-turso-auth-token`
-2. Put these values in `.env.local` (or `.env`) before running the app.
+Create a `.env.local` file in the project root:
+
+```
+# .env.local
+DATABASE_URL=file:./database/vimcolorschemes.db
+# DATABASE_URL=libsql://your-database.turso.io
+# DATABASE_AUTH_TOKEN=your-turso-auth-token
+```
+
+The local SQLite option works out of the box. Uncomment the Turso lines only if
+you want to connect to a remote database.
 
 ## 2. Run the app
 
