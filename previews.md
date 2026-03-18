@@ -11,55 +11,26 @@ backgrounds) on a very specific code snippet.
 
 Using [extractor.nvim](https://github.com/vimcolorschemes/extractor.nvim), the
 cursor moves through every token in the code snippet, and both the color and
-the highlight group name under the cursor are stored. The data is stored in
-the database entry for each colorscheme.
+the highlight group name under the cursor are stored. Each group is written as
+a row in the `colorscheme_groups` table.
 
-Here is an example of what the data looks like for a colorscheme after a
-`generate` job:
+The data is stored across two tables. First, a row in `colorschemes`:
 
-```json
-{
-  ...
-  "vimColorSchemes": [
-    {
-      "name": "catppuccin-macchiato",
-      "data": {
-        "dark": [
-          { "name": "vimLineCommentFg", "hexCode": "#939AB7" },
-          { "name": "vimFuncKeyFg", "hexCode": "#C6A0F6" },
-          { "name": "vimFuncBangFg", "hexCode": "#91D7E3" },
-          { "name": "DelimiterFg", "hexCode": "#939AB7" },
-          { "name": "vimFuncParamFg", "hexCode": "#F0C6C6" },
-          { "name": "vimFuncModFg", "hexCode": "#F5BDE6" },
-          { "name": "vimLetFg", "hexCode": "#C6A0F6" },
-          { "name": "vimVarFg", "hexCode": "#F0C6C6" },
-          { "name": "vimOperFg", "hexCode": "#91D7E3" },
-          { "name": "vimFuncNameFg", "hexCode": "#8AADF4" },
-          { "name": "vimParenSepFg", "hexCode": "#939AB7" },
-          { "name": "vimFuncVarFg", "hexCode": "#F0C6C6" },
-          { "name": "vimStringFg", "hexCode": "#A6DA95" },
-          { "name": "vimNumberFg", "hexCode": "#F5A97F" },
-          { "name": "vimNotFuncFg", "hexCode": "#C6A0F6" },
-          { "name": "vimCommandFg", "hexCode": "#C6A0F6" },
-          { "name": "NormalFg", "hexCode": "#CAD3F5" },
-          { "name": "NormalBg", "hexCode": "#24273A" },
-          { "name": "StatusLineFg", "hexCode": "#CAD3F5" },
-          { "name": "StatusLineBg", "hexCode": "#1E2030" },
-          { "name": "CursorFg", "hexCode": "#24273A" },
-          { "name": "CursorBg", "hexCode": "#CAD3F5" },
-          { "name": "LineNrFg", "hexCode": "#494D64" },
-          { "name": "CursorLineBg", "hexCode": "#303347" },
-          { "name": "CursorLineNrFg", "hexCode": "#B7BDF8" }
-        ]
-      },
-      "backgrounds": ["dark"]
-    },
-  ],
-  ...
-  "generateValid": true,
-  "generatedAt": "2021-10-13T21:12:19.281Z"
-}
-```
+| column | example |
+|---|---|
+| `id` | `1` |
+| `repository_id` | `397434315` |
+| `name` | `catppuccin-macchiato` |
+
+Then one row per highlight group in `colorscheme_groups`:
+
+| column | example |
+|---|---|
+| `id` | `1` |
+| `colorscheme_id` | `1` |
+| `background` | `dark` |
+| `name` | `NormalFg` |
+| `hex_code` | `#CAD3F5` |
 
 ## Code sample template
 

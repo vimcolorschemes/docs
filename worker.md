@@ -34,21 +34,19 @@ dotfiles, vim plugins, etc.
 
 Each repository is inserted in the database.
 
-Here is an example repository shape at this stage:
+A row is inserted into the `repositories` table with the following columns populated:
 
-```json
-{
-  "_id": "397434315",
-  "owner": {
-    "avatarURL": "https://avatars.githubusercontent.com/u/93489351?v=4",
-    "name": "catppuccin"
-  },
-  "name": "nvim",
-  "description": "🍨 Soothing pastel theme for (Neo)vim",
-  "githubCreatedAt": "2021-08-18T01:14:49.000Z",
-  "githubURL": "https://github.com/catppuccin/nvim"
-}
-```
+| column | example |
+|---|---|
+| `id` | `397434315` |
+| `owner_name` | `catppuccin` |
+| `owner_avatar_url` | `https://avatars.githubusercontent.com/u/93489351?v=4` |
+| `name` | `nvim` |
+| `description` | `🍨 Soothing pastel theme for (Neo)vim` |
+| `github_url` | `https://github.com/catppuccin/nvim` |
+| `github_created_at` | `2021-08-18T01:14:49Z` |
+
+A matching row is also added to `repository_job_events` with `job = 'import'` and `status = 'success'` (or `'error'` with a message if it failed).
 
 ## `update`
 
@@ -61,36 +59,18 @@ used by the website.
 - the stargazers count for the last week
 - the last push date
 
-Here is a sample of a valid vim color scheme after this stage:
+The following columns are updated on the `repositories` row:
 
-```json
-{
-  "_id": "397434315",
-  "owner": {
-    "avatarURL": "https://avatars.githubusercontent.com/u/93489351?v=4",
-    "name": "catppuccin"
-  },
-  "name": "nvim",
-  "description": "🍨 Soothing pastel theme for (Neo)vim",
-  "githubCreatedAt": "2021-08-18T01:14:49.000Z",
-  "githubURL": "https://github.com/catppuccin/nvim",
-  "pushedAt": "2025-02-22T19:13:26.000Z",
-  "stargazersCount": 6021,
-  "stargazersCountHistory": [
-    {
-      "date": "2025-02-22T00:00:00.000Z",
-      "stargazersCount": 6021
-    },
-    {
-      "date": "2025-02-21T00:00:00.000Z",
-      "stargazersCount": 6011
-    }
-  ],
-  "weekStargazersCount": 10,
-  "updateValid": true,
-  "updatedAt": "2025-02-22T22:45:45.525Z"
-}
-```
+| column | example |
+|---|---|
+| `pushed_at` | `2025-02-22T19:13:26Z` |
+| `stargazers_count` | `6021` |
+| `stargazers_count_history` | `[{"date":"2025-02-22T00:00:00Z","stargazersCount":6021}, ...]` (JSON text) |
+| `week_stargazers_count` | `10` |
+| `is_eligible` | `1` |
+| `updated_at` | `2025-02-22T22:45:45Z` |
+
+A row is added to `repository_job_events` with `job = 'update'`.
 
 ## `generate`
 
@@ -99,15 +79,11 @@ The `generate` job installs the
 plugin, then installs each repository as a Neovim plugin, lists the possible
 colorschemes it contains, and generates the color data for each one.
 
-Here is a sample of a valid vim color scheme after this stage:
+Color data is written to two tables linked to the repository:
 
-```json
-{
-  ...
-  "vimColorSchemes": [ ... ],
-  "generateValid": true,
-  "generatedAt": "2021-10-13T21:12:19.281Z"
-}
-```
+- `colorschemes` — one row per colorscheme name found in the plugin
+- `colorscheme_groups` — one row per highlight group per background variant
 
-See [Colorscheme code previews](/previews) for the full structure of `vimColorSchemes`.
+A row is added to `repository_job_events` with `job = 'generate'`.
+
+See [Colorscheme code previews](/previews) for the full table structure and an example.
