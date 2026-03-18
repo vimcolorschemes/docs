@@ -23,11 +23,7 @@ Changes are automatically deployed to docs.vimcolorschemes.com via GitHub Pages.
 To preview changes locally:
 
 ```bash
-# Install docsify globally (first time only)
-npm i docsify-cli -g
-
-# Serve locally
-docsify serve .
+npx docsify-cli serve .
 ```
 
 Then visit http://localhost:3000
