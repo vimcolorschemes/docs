@@ -9,18 +9,20 @@ the repository data used by the app.
 
 As of `v3.0.0`, the Worker uses libSQL/SQLite (local or Turso) for storage.
 
-## 3 jobs
+## 4 jobs
 
-The Worker runs 3 jobs:
+The Worker runs 4 jobs:
 
 - [`import`](#import): search for new repositories and store their basic info
 - [`update`](#update): refresh repository metadata such as timestamps and stars
 - [`generate`](#generate): generate the color data used in the [code previews](/previews)
+- [`publish`](#publish): trigger a frontend deploy after the daily jobs succeed
 
 It is currently configured to do all of these things daily to ensure
 up-to-date, clean data.
 
-After those jobs finish, the app fetches the latest data and builds
+After `import`, `update`, and `generate` finish successfully, the `publish` job
+triggers a frontend deploy so the app can fetch the latest data and build
 [vimcolorschemes.com](https://vimcolorschemes.com).
 
 ## `import`
@@ -87,3 +89,14 @@ Color data is written to two tables linked to the repository:
 A row is added to `repository_job_events` with `job = 'generate'`.
 
 See [Colorscheme code previews](/previews) for the full table structure and an example.
+
+## `publish`
+
+The `publish` job does not modify repository or colorscheme data.
+
+Instead, it checks the latest reports for `import`, `update`, and `generate`
+for the current UTC day. If all 3 jobs succeeded, it triggers the frontend
+deploy webhook.
+
+This keeps the app deploy step separate from the data processing jobs while
+still ensuring the website is rebuilt from fresh data.
