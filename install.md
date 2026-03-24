@@ -10,6 +10,9 @@
 
 The app now uses libSQL/SQLite.
 
+The repository already includes a local example database at
+`database/vimcolorschemes.db`.
+
 Create a `.env.local` file in the project root:
 
 ```
@@ -19,8 +22,8 @@ DATABASE_URL=file:./database/vimcolorschemes.db
 # DATABASE_AUTH_TOKEN=your-turso-auth-token
 ```
 
-The local SQLite option works out of the box. Uncomment the Turso lines only if
-you want to connect to a remote database.
+The local SQLite option works out of the box with the bundled example database.
+Uncomment the Turso lines only if you want to connect to a remote database.
 
 ## 2. Run the app
 
