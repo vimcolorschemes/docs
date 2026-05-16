@@ -1,0 +1,38 @@
+---
+export function getStaticPaths() {
+  const redirects: Record<string, string> = {
+    intro: '/overview/',
+    install: '/getting-started/frontend/',
+    workflow: '/development/workflow/',
+    worker: '/architecture/worker/',
+    previews: '/development/previews/',
+    contribute: '/contributing/',
+  };
+
+  return Object.entries(redirects).map(([legacy, target]) => ({
+    params: { legacy },
+    props: { target },
+  }));
+}
+
+const { target } = Astro.props;
+const canonical = new URL(target, Astro.site ?? 'https://docs.vimcolorschemes.com');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={canonical} />
+    <title>Redirecting...</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>{target}</a>.</p>
+    <script is:inline>
+      const target = document.querySelector('a')?.getAttribute('href');
+      if (target) window.location.replace(target);
+    </script>
+  </body>
+</html>
