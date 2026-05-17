@@ -9,6 +9,22 @@ export default defineConfig({
       description:
         'Developer documentation for vimcolorschemes.com and its data pipeline.',
       favicon: '/favicon.svg',
+      head: [
+        {
+          tag: 'meta',
+          attrs: {
+            property: 'og:image',
+            content: 'https://docs.vimcolorschemes.com/opengraph.png',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'twitter:image',
+            content: 'https://docs.vimcolorschemes.com/opengraph.png',
+          },
+        },
+      ],
       logo: {
         src: './public/logo.svg',
         alt: 'vimcolorschemes',
